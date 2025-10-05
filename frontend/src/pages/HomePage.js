@@ -8,7 +8,6 @@ const HomePage = () => {
   const [pagination, setPagination] = useState({});
   const [total, setTotal] = useState(0);
   const [genres, setGenres] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
   const [query, setQuery] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
   const [sortBy, setSortBy] = useState('');
@@ -23,14 +22,23 @@ const HomePage = () => {
       if (sortBy) params.sortBy = sortBy;
 
       const { data } = await api.get('/books', { params });
-      setBooks(data.data);
-      setPagination(data.pagination);
-      setTotal(data.total);
+
+      const booksPayload = Array.isArray(data?.data) ? data.data : [];
+      setBooks(booksPayload);
+
+      setPagination(data?.pagination || {});
+
+      const derivedTotal = typeof data?.total === 'number' ? data.total : booksPayload.length;
+      setTotal(derivedTotal);
+
       if (!selectedGenre && !sortBy && !searchQuery) { // Only update genres on initial load
-        setGenres(data.genres || []);
+        setGenres(Array.isArray(data?.genres) ? data.genres : []);
       }
     } catch (err) {
       console.error('Failed to fetch books', err);
+      // Reset to safe defaults so the UI doesn't break when the API fails
+      setBooks([]);
+      setPagination({});
     } finally {
       setLoading(false);
     }

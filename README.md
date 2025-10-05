@@ -34,6 +34,7 @@ Frontend currently points to `http://localhost:5000/api` in `frontend/src/api/in
 ## Local Development
 
 1. **Install dependencies**
+
    ```powershell
    cd backend
    npm install
@@ -41,6 +42,7 @@ Frontend currently points to `http://localhost:5000/api` in `frontend/src/api/in
    cd ..\frontend
    npm install
    ```
+
 2. **Start the backend (Express + MongoDB)**
    ```powershell
    cd backend
@@ -62,13 +64,13 @@ Frontend currently points to `http://localhost:5000/api` in `frontend/src/api/in
 
 ### Useful NPM Scripts
 
-| Location | Script | Purpose |
-|----------|--------|---------|
-| `backend/` | `npm run dev` | Nodemon-powered API server |
-| `backend/` | `npm run seed` | Import curated dummy data |
-| `frontend/` | `npm start` | CRA dev server |
-| `frontend/` | `npm run build` | Production-ready bundle |
-| `frontend/` | `npm test` | React Testing Library/Jest runner |
+| Location    | Script          | Purpose                           |
+| ----------- | --------------- | --------------------------------- |
+| `backend/`  | `npm run dev`   | Nodemon-powered API server        |
+| `backend/`  | `npm run seed`  | Import curated dummy data         |
+| `frontend/` | `npm start`     | CRA dev server                    |
+| `frontend/` | `npm run build` | Production-ready bundle           |
+| `frontend/` | `npm test`      | React Testing Library/Jest runner |
 
 ## Testing & Linting
 
